@@ -8,15 +8,10 @@ Installation:
 ##Visual Studio 10:
 
 1) Make the directory project.build/glfw/sqlite3
-
 2) Put sqlite3.c and sqlite3.h in project.build/glfw/sqlite3/
-
 3) Update the native project
-
   a) Add project.build/glfw/sqlite3/ to the native project
-
   b) Add project.build/glfw/sqlite3/ to the additional include directories
-  
   c) Make sure that sqlite3.c is compiled as C code
 
 
