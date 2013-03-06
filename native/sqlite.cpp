@@ -1,4 +1,3 @@
-
 #include <sqlite3.h>
 
 class BBSQlDataBase;
@@ -19,6 +18,16 @@ public:
 		return rc;
 	}
 	
+	~BBSQlDataBase() 
+	{
+		Close();
+	}
+	
+	void mark() 
+	{ 
+		Object::mark();
+	}
+	
 	int Query(String str)
 	{
 		char *zErrMsg = 0;
@@ -33,8 +42,13 @@ public:
 	
 	int Close()
 	{
-		sqlite3_close(db);
-		return 0;
+		int val = 0;
+		if( db )
+		{
+			val = sqlite3_close(db);
+			db = 0;
+		}
+		return val;
 	}
 
 	virtual void UNSAFE_CALLBACK(Array<String> name_array, Array<String> value_array)
