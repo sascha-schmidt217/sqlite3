@@ -1,4 +1,3 @@
-
 Import "native/sqlite.cpp"
 
 Private 
@@ -78,10 +77,10 @@ Class SQLite3DataBase Extends BBSQlDataBase
 	
 	Method UNSAFE_CALLBACK:Void(name_arr:String[], value_array:String[])
 		result.Add(name_arr,value_array)
-		Local length = name_arr.Length
-		For Local i = 0 Until length
-			Print name_arr[i] + "/" + value_array[i]
-		End 
+		'Local length = name_arr.Length
+		'For Local i = 0 Until length
+		'	Print name_arr[i] + "/" + value_array[i]
+		'End 
 	End 
 	
 	Method Exec:SQLite3Result(str$)
