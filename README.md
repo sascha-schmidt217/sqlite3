@@ -9,10 +9,10 @@ SQLite3
 
 *  Make the directory project.build/glfw/sqlite3
 *  Put sqlite3.c and sqlite3.h in project.build/glfw/sqlite3/
-*  Update the native project
-  * Add project.build/glfw/sqlite3/ to the native project
-  * Add project.build/glfw/sqlite3/ to the additional include directories
-  * Make sure that sqlite3.c is compiled as C code
+*  Edit the native project
+  * add project.build/glfw/sqlite3/ to the native project
+  * add project.build/glfw/sqlite3/ to the additional include directories
+  * make sure that sqlite3.c is compiled as C code
 
 
 **gcc/MinGW**
