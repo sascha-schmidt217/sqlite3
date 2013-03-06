@@ -1,4 +1,4 @@
-sqlite3
+SQLite3
 =======
 
 sqlite3 monkey wrapper
