@@ -4,13 +4,15 @@ SQLite3
 sqlite3 monkey wrapper
 
 Installation:
-==============
 
 Visual Studio 10:
+---------------------------------------------------------------------
 
-1) Put sqlite3.c and sqlite3.h in project.build/glfw/sqlite3/
+1) Make the directory project.build/glfw/sqlite3
 
-2) Update the native project properties
+2) Put sqlite3.c and sqlite3.h in project.build/glfw/sqlite3/
+
+3) Update the native project
 
   a) Add project.build/glfw/sqlite3/ to the native project
 
@@ -19,8 +21,8 @@ Visual Studio 10:
   c) Make sure that sqlite3.c is compiled as C code
 
 
-gcc/MinGW
-
+gcc/MinGW:
+---------------------------------------------------------------------
 1) Make the directory project.build/glfw/sqlite3
 
 2) Put sqlite3.c and sqlite3.h in project.build/glfw/sqlite3/
