@@ -31,7 +31,7 @@ public:
 	    return rc;
 	}
 	
-	void Close()
+	int Close()
 	{
 		sqlite3_close(db);
 		return 0;

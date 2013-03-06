@@ -1,3 +1,4 @@
+
 Import mojo
 Import sql
 
@@ -5,7 +6,7 @@ Import sql
 ' add sqlite3.c + sqlite3.h to project
 ' make sure sqlite3.c is compiled as C code
 
-Class SQLite3Test Extends App
+Class MonkeyPuzzle Extends App
 
 	Field _db:SQLite3DataBase
 	
@@ -44,9 +45,9 @@ Class SQLite3Test Extends App
 	
 End
 
-Global myapp:SQLite3Test
+Global myapp:MonkeyPuzzle
 Function Main()
-	myapp = New SQLite3Test()
+	myapp = New MonkeyPuzzle()
 End
 
 
