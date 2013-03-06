@@ -1,12 +1,11 @@
 SQLite3
 =======
 
-sqlite3 monkey wrapper
+**sqlite3 monkey wrapper**
 
 Installation:
 
 ##Visual Studio 10:
----------------------------------------------------------------------
 
 1) Make the directory project.build/glfw/sqlite3
 
@@ -22,7 +21,6 @@ Installation:
 
 
 ##gcc/MinGW:
----------------------------------------------------------------------
 
 1) Make the directory project.build/glfw/sqlite3
 
@@ -31,9 +29,9 @@ Installation:
 3) Edit project.build/glfw/mingw/Makefile
 
   a) add "-I../sqlite3" (without quote marks) to the end of the CPPFLAGS line.
-	b) add "../sqlite3/sqlite3.o" (without quote marks) to the end of the OBJS line.
+  b) add "../sqlite3/sqlite3.o" (without quote marks) to the end of the OBJS line.
 
 4) Edit project.build/glfw/CONFIG.MONKEY
 
-	a) make sure #GLFW_USE_MINGW=true
+  a) make sure #GLFW_USE_MINGW=true
 
