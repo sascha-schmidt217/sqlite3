@@ -5,7 +5,7 @@ sqlite3 monkey wrapper
 
 Installation:
 
-copy sql.sqlite3/* to sample.build/glfw/vc2010
+copy sql.sqlite3/* to .build/...
 
 add sqlite3.c + sqlite3.h to the native project
 
