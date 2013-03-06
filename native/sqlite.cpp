@@ -1,9 +1,10 @@
+
 #include <sqlite3.h>
 
 class BBSQlDataBase;
 BBSQlDataBase* link;
 
-class BBSQlDataBase : public gc_object{
+class BBSQlDataBase : public Object{
 public:
 	sqlite3 *db;
 
