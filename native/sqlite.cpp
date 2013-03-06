@@ -34,6 +34,7 @@ public:
 	void Close()
 	{
 		sqlite3_close(db);
+		return 0;
 	}
 
 	virtual void UNSAFE_CALLBACK(Array<String> name_array, Array<String> value_array)
