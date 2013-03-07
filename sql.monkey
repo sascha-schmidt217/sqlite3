@@ -188,6 +188,9 @@ Public
 	
 	Method ExecAndGet:String(str$)
 		Local stmt:= CreateStatement(str)
+		If Not stmt
+			Throw New SQLite3Exception("failed to create statement: " + str)
+		End 
 		stmt.ExecuteStep()
 		Return stmt.GetText(0)
 	End
