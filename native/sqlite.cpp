@@ -4,7 +4,6 @@
 class BBSQlDataBase;
 BBSQlDataBase* link;
 
-
 class BBSQlDataBase : public Object{
 public:
 	sqlite3 *db;
