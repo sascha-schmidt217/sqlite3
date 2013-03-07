@@ -168,7 +168,13 @@ Public
 	
 	Method TableExists?(tableName$)
 	    Return SQLITE_ERROR = Query("SELECT count(*) FROM sqlite_master WHERE type='table' AND name=" + tableName);
-	End 
+	End
+
+	Method LastInsertId:Int()
+		Local res := Exec("SELECT last_insert_rowid() AS InsertID ")
+		res.Read()
+		Return Int(res.StringMap.Get("InsertID"))
+	End
 
 	Method Query(str$)
 		Local ret = Super.Query(str)
