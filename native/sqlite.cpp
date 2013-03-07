@@ -34,13 +34,7 @@ public:
 	{
 		char *zErrMsg = 0;
 		link = this;
-		int rc = sqlite3_exec(db, str.ToCString<char>(), callback, 0, &zErrMsg);
-		if( rc!=SQLITE_OK )
-		{
-		  Print( String::Load((unsigned char*)zErrMsg,strlen(zErrMsg)) );
-	      sqlite3_free(zErrMsg);
-	    }
-	    return rc;
+		return sqlite3_exec(db, str.ToCString<char>(), callback, 0, &zErrMsg);
 	}
 	
 	int Close()

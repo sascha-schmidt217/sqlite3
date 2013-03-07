@@ -170,6 +170,14 @@ Public
 	    Return SQLITE_ERROR = Query("SELECT count(*) FROM sqlite_master WHERE type='table' AND name=" + tableName);
 	End 
 
+	Method Query(str$)
+		Local ret = Super.Query(str)
+		If ret <> SQLITE_OK
+			Print GetError()
+		End
+		Return ret
+	End 
+	
 	Method Exec:SQLite3Result(str$)
 		result= New SQLite3Result
 		If Query(str) <> SQLITE_OK
@@ -178,36 +186,33 @@ Public
 		Return result
 	End 
 	
+	Method ExecAndGet:String(str$)
+		Local stmt:= CreateStatement(str)
+		stmt.ExecuteStep()
+		Return stmt.GetText(0)
+	End
+	
 	Method CreateStatement:SQLite3Statement(query$)
 		Local stmt:=  New SQLite3Statement
 		Local ret:= stmt.Load(Self, query)
 		If ret 
 			'' error
+			Print GetError()
 			stmt = Null
 		End 
 		Return stmt
 	End 
 	
-	Method CommitTransaction()
-		'If onTransaction And Not commited
-			Query("COMMIT")
-			commited = True
-			onTransaction = False
-		'End 
+	Method EndTransaction()
+		Query("COMMIT") 
 	End 
 	
 	Method RollBackTransaction()
-		'If Not onTransaction And commited
-			Query("ROLLBACK")
-			commited = False
-		'End 
+		Query("ROLLBACK")
 	End 
 	
 	Method BeginTransaction()
-		'If Not onTransaction
-			Query("BEGIN")
-			onTransaction = True
-		'End 
+		Query("BEGIN")
 	End 
 	
 End 
