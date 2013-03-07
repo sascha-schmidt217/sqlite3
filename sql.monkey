@@ -1,10 +1,6 @@
 ' 2013 (c) Sascha Schmidt
 
 Import "native/sqlite.${LANG}"
-'' wp7 - http://sqlitewindowsphone.codeplex.com/
-'' c# implementation: C:\Users\Sascha\Downloads\csharp-sqlite_3_7_7_1_71
-'' https://code.google.com/p/csharp-sqlite/downloads/detail?name=csharp-sqlite_3_7_7_1_71.zip&can=2&q=
-'' .Net win32 library- http://system.data.sqlite.org/index.html/doc/trunk/www/index.wiki
 
 #rem
 ** Many SQLite functions return an integer result code from the set shown
