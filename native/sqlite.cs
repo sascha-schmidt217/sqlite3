@@ -1,18 +1,14 @@
-// https://code.google.com/p/csharp-sqlite/downloads/detail?name=csharp-sqlite_3_7_7_1_71.zip&can=2&q=
+// https://code.google.com/p/csharp-sqlite/
 // add 'Community.CsharpSqlite.Dll'
-// add 'using Community.CsharpSqlite;'
 
 class BBSQlDataBase
 {
-
-	public static BBSQlDataBase link;
-	
-	public Sqlite3.sqlite3 db;
-    public Sqlite3.dxCallback callback_delegate = new Sqlite3.dxCallback(callback); 
+	public Community.CsharpSqlite.Sqlite3.sqlite3 db;
+    public Community.CsharpSqlite.Sqlite3.dxCallback callback_delegate = new Community.CsharpSqlite.Sqlite3.dxCallback(callback); 
 
 	public int Load(String name, int flags)
 	{
-		int rc = Sqlite3.sqlite3_open_v2(name, out db, flags, null );
+		int rc = Community.CsharpSqlite.Sqlite3.sqlite3_open_v2(name, out db, flags, null );
 		if( rc != 0 )
 		{
 			// error
@@ -28,7 +24,7 @@ class BBSQlDataBase
 	
 	public virtual int Query(String str)
 	{
-		return Sqlite3.sqlite3_exec(db, str, callback_delegate, this, 0);
+		return Community.CsharpSqlite.Sqlite3.sqlite3_exec(db, str, callback_delegate, this, 0);
 	}
 	
 	public virtual int Close()
@@ -36,7 +32,7 @@ class BBSQlDataBase
 		int val = 0;
 		if( db != null )
 		{
-			val = Sqlite3.sqlite3_close(db);
+			val = Community.CsharpSqlite.Sqlite3.sqlite3_close(db);
 			db = null;
 		}
 		return val;
@@ -44,7 +40,7 @@ class BBSQlDataBase
 
 	public virtual String GetError()
 	{
-		return Sqlite3.sqlite3_errmsg(db);
+		return Community.CsharpSqlite.Sqlite3.sqlite3_errmsg(db);
 	}
 	
 	public virtual void UNSAFE_CALLBACK(String[] name_array, String[] value_array)
@@ -65,8 +61,8 @@ class BBSQlDataBase
 
 class BBSQLStatement 
 {
-	public Sqlite3.Vdbe stmt;           
-    public Sqlite3.sqlite3 sqlite;         
+	public Community.CsharpSqlite.Sqlite3.Vdbe stmt;           
+    public Community.CsharpSqlite.Sqlite3.sqlite3 sqlite;         
 	public bool done;
 	public bool ok;
 	public int columnCount;
@@ -86,7 +82,7 @@ class BBSQLStatement
 	{
 		if( stmt != null )
 		{
-			int ret = Sqlite3.sqlite3_finalize(stmt);
+			int ret = Community.CsharpSqlite.Sqlite3.sqlite3_finalize(stmt);
 			stmt = null;
 	    }
 	}
@@ -98,8 +94,8 @@ class BBSQLStatement
 		ok = false;
 		done = false;
 		sqlite = db.db;
-		int ret = Sqlite3.sqlite3_prepare_v2(sqlite, query, query.Length, ref stmt, 0);
-	    columnCount = Sqlite3.sqlite3_column_count(stmt);
+		int ret = Community.CsharpSqlite.Sqlite3.sqlite3_prepare_v2(sqlite, query, query.Length, ref stmt, 0);
+	    columnCount = Community.CsharpSqlite.Sqlite3.sqlite3_column_count(stmt);
 	    return ret;
 	}
 
@@ -107,74 +103,74 @@ class BBSQLStatement
 	{
 		ok = false;
     	done = false;
-		return Sqlite3.sqlite3_reset(stmt);
+		return Community.CsharpSqlite.Sqlite3.sqlite3_reset(stmt);
 	}
 
     public int BindInt(int index, int value)  
 	{
-		return Sqlite3.sqlite3_bind_int(stmt, index, value);
+		return Community.CsharpSqlite.Sqlite3.sqlite3_bind_int(stmt, index, value);
 	}
 
     public int BindInt64(int index, int value)  
     {
-    	return Sqlite3.sqlite3_bind_int64(stmt, index, value);
+    	return Community.CsharpSqlite.Sqlite3.sqlite3_bind_int64(stmt, index, value);
     }
 
     public int BindDouble(int index, float value)  
     {
-    	return Sqlite3.sqlite3_bind_double(stmt, index, value);
+    	return Community.CsharpSqlite.Sqlite3.sqlite3_bind_double(stmt, index, value);
     }
 
     public int BindString(int index, String value)  
     {
-	    return Sqlite3.sqlite3_bind_text(stmt, index, value, value.Length, Sqlite3.SQLITE_TRANSIENT);   
+	    return Community.CsharpSqlite.Sqlite3.sqlite3_bind_text(stmt, index, value, value.Length, Community.CsharpSqlite.Sqlite3.SQLITE_TRANSIENT);   
     }
 
     public int BindNull(int index)
     {
-	    return Sqlite3.sqlite3_bind_null(stmt, index);
+	    return Community.CsharpSqlite.Sqlite3.sqlite3_bind_null(stmt, index);
     }
 
     public int BindIntByName(String name, int value)  
     {
-    	int index = Sqlite3.sqlite3_bind_parameter_index(stmt, name);
-	    return Sqlite3.sqlite3_bind_int(stmt, index+1, value);
+    	int index = Community.CsharpSqlite.Sqlite3.sqlite3_bind_parameter_index(stmt, name);
+	    return Community.CsharpSqlite.Sqlite3.sqlite3_bind_int(stmt, index+1, value);
     }
 
     public int BindInt64ByName(String name, int value)  
     {
-    	int index = Sqlite3.sqlite3_bind_parameter_index(stmt, name);
-	    return Sqlite3.sqlite3_bind_int64(stmt, index+1, value);
+    	int index = Community.CsharpSqlite.Sqlite3.sqlite3_bind_parameter_index(stmt, name);
+	    return Community.CsharpSqlite.Sqlite3.sqlite3_bind_int64(stmt, index+1, value);
     }
 
     public int BindDoubleByName(String name, float value)   
     {
-    	int index = Sqlite3.sqlite3_bind_parameter_index(stmt, name);
-	    return Sqlite3.sqlite3_bind_double(stmt, index+1, value);
+    	int index = Community.CsharpSqlite.Sqlite3.sqlite3_bind_parameter_index(stmt, name);
+	    return Community.CsharpSqlite.Sqlite3.sqlite3_bind_double(stmt, index+1, value);
     }
 
     public int BindStringByName(String name, String value)   
     {
-    	int index = Sqlite3.sqlite3_bind_parameter_index(stmt, name);
-        return Sqlite3.sqlite3_bind_text(stmt, index + 1, value, value.Length, Sqlite3.SQLITE_TRANSIENT);
+    	int index = Community.CsharpSqlite.Sqlite3.sqlite3_bind_parameter_index(stmt, name);
+        return Community.CsharpSqlite.Sqlite3.sqlite3_bind_text(stmt, index + 1, value, value.Length, Community.CsharpSqlite.Sqlite3.SQLITE_TRANSIENT);
     }
 
     public int BindNullByName(String name) 
     {
-    	int index = Sqlite3.sqlite3_bind_parameter_index(stmt, name);
-	    return Sqlite3.sqlite3_bind_null(stmt, index+1);
+    	int index = Community.CsharpSqlite.Sqlite3.sqlite3_bind_parameter_index(stmt, name);
+	    return Community.CsharpSqlite.Sqlite3.sqlite3_bind_null(stmt, index+1);
     }
 
     public bool ExecuteStep()
 	{
 		if (!done)
 	    {
-	        int ret = Sqlite3.sqlite3_step(stmt);
-	        if (Sqlite3.SQLITE_ROW == ret) // one row is ready : call getColumn(N) to access it
+	        int ret = Community.CsharpSqlite.Sqlite3.sqlite3_step(stmt);
+	        if (Community.CsharpSqlite.Sqlite3.SQLITE_ROW == ret) // one row is ready : call getColumn(N) to access it
 	        {
 	            ok = true;
 	        }
-	        else if (Sqlite3.SQLITE_DONE == ret) // no (more) row ready : the query has finished executing
+	        else if (Community.CsharpSqlite.Sqlite3.SQLITE_DONE == ret) // no (more) row ready : the query has finished executing
 	        {
 	            ok = false;
 	            done = true;
@@ -192,22 +188,22 @@ class BBSQLStatement
 
     public int GetInt(int index)
 	{
-	    return Sqlite3.sqlite3_column_int(stmt, index);
+	    return Community.CsharpSqlite.Sqlite3.sqlite3_column_int(stmt, index);
 	}
 
     public int GetInt64(int index)
 	{
-	    return (int)Sqlite3.sqlite3_column_int64(stmt, index);
+	    return (int)Community.CsharpSqlite.Sqlite3.sqlite3_column_int64(stmt, index);
 	}
 
     public float GetDouble(int index)
 	{
-	    return (float)Sqlite3.sqlite3_column_double(stmt, index);
+	    return (float)Community.CsharpSqlite.Sqlite3.sqlite3_column_double(stmt, index);
 	}
 
     public String GetText(int index)
 	{
-		return Sqlite3.sqlite3_column_text(stmt, index);
+		return Community.CsharpSqlite.Sqlite3.sqlite3_column_text(stmt, index);
 	}
 
     public int GetColumnCount()
