@@ -156,8 +156,10 @@ End
 Class SQLite3DataBase Extends BBSQlDataBase
 Private
 
- 	Field  result:SQLite3Result
- 
+ 	Field result:SQLite3Result
+ 	Field onTransaction? = False
+ 	Field commited? = False
+ 	
 Public 
 	
  	Method UNSAFE_CALLBACK:Void(name_arr:String[], value_array:String[])
@@ -170,7 +172,9 @@ Public
 
 	Method Exec:SQLite3Result(str$)
 		result= New SQLite3Result
-		Query(str)
+		If Query(str) <> SQLITE_OK
+			Throw New SQLite3Exception(GetError())
+		End 
 		Return result
 	End 
 	
@@ -184,4 +188,41 @@ Public
 		Return stmt
 	End 
 	
+	Method CommitTransaction()
+		'If onTransaction And Not commited
+			Query("COMMIT")
+			commited = True
+			onTransaction = False
+		'End 
+	End 
+	
+	Method RollBackTransaction()
+		'If Not onTransaction And commited
+			Query("ROLLBACK")
+			commited = False
+		'End 
+	End 
+	
+	Method BeginTransaction()
+		'If Not onTransaction
+			Query("BEGIN")
+			onTransaction = True
+		'End 
+	End 
+	
 End 
+
+
+Class SQLite3Exception extends Throwable
+	
+	Method New(description:String)
+		Self.description = description 
+	end
+	
+	Method ToString:String()
+		Return Self.description
+	End
+	
+Private
+	Field description:String
+End
